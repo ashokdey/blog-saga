@@ -1,31 +1,22 @@
-import React from 'react';
-import { Grid, Button, Form } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+import RegisterForm from '../../components/RegisterForm';
 
-const Register = (props) => (
-  <div>
-    <Grid centered>
-      <Form>
-        <Form.Field inline>
-          <label>Username</label>
-          <input placeholder='John Doe' />
-        </Form.Field>
-        <Form.Field inline>
-          <label style={{paddingRight: '1.6em'}}>Email</label>
-          <input placeholder='johndoe@email.com' />
-        </Form.Field>
-        <Form.Field inline>  
-          <label>Password</label>
-          <input placeholder='minimum 5 chars long' type="password"/>
-        </Form.Field>
-        <Button primary type='submit'>Register</Button>
-      </Form>
-    </Grid>  
-    <Grid centered>
-      <div style={{paddingTop: '2em'}}>
-        Already Registered? <Link to="/"> Login Me </Link>
-      </div>
-    </Grid>
-  </div>
-);
+class Register extends Component {
+  constructor(props){
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(values) {
+    console.log(values);
+  }
+
+  render() {
+    return (
+      <RegisterForm onSubmit={this.handleSubmit} />
+    );
+  }
+}
+
 export default Register;

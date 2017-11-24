@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import RegisterForm from '../../components/RegisterForm';
+import { registerUser } from './actions';
 
 class Register extends Component {
   constructor(props){
@@ -9,7 +10,7 @@ class Register extends Component {
   }
 
   handleSubmit(values) {
-    console.log(values);
+    this.props.registerUser(values);
   }
 
   render() {
@@ -19,4 +20,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default connect(null, { registerUser })(Register);

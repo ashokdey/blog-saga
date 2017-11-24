@@ -17,14 +17,19 @@ import {
 import { BASE_URL } from '../../config';
 
 function registerNewUser(data) {
-  return axios.post(`${BASE_URL}/api/users`, data)
+  return axios.post(`${BASE_URL}/api/register`, data)
 }
 
 function* handleRegistration(action) {
   try {
-    const response = yield call(registerNewUser, action.payload);
-    console.log(response);
-    // yield put(registerUserSuccess(response.data))
+    const {data} = yield call(registerNewUser, action.payload);
+    // data is inside response.data.data
+    const response = data;
+
+    // set the user's token in local storage to be used with every request
+    localStorage.setItem('user', `${response.data.token}`);
+    // also set the user : token in state by calling registerUserSuccess action
+    yield put(registerUserSuccess(response.data.token));
   } catch (error) {
     console.log(error);
     yield put(registerUserFailed(error));

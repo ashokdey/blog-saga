@@ -14,7 +14,7 @@ const Login = (props) => (
           <label>Password</label>
           <input placeholder='minimum 5 chars long' type="password"/>
         </Form.Field>
-        <Button primary type='submit'>Submit</Button>
+        <Button primary type='submit'>Login</Button>
       </Form>
     </Grid>
     <Grid centered>

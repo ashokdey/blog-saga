@@ -18,12 +18,12 @@ const Register = (props) => (
           <label>Password</label>
           <input placeholder='minimum 5 chars long' type="password"/>
         </Form.Field>
-        <Button primary type='submit'>Submit</Button>
+        <Button primary type='submit'>Register</Button>
       </Form>
     </Grid>  
     <Grid centered>
       <div style={{paddingTop: '2em'}}>
-        Already Registered? <Link to="/"> Login Me </Link>      
+        Already Registered? <Link to="/"> Login Me </Link>
       </div>
     </Grid>
   </div>

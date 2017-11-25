@@ -11,12 +11,14 @@ const LoginForm = (props) => {
       <Grid centered>
         <Form onSubmit={handleSubmit}>
           <Field
-            component={CustomInput} name="username" 
-            type="text" placeholder='Your username' 
+            component={CustomInput} name="username"
+            type="text" placeholder="Your username"
+            label="Username"
           />
           <Field
             component={CustomInput} name="password" 
-            type="password" placeholder='minimum 5 chars long'
+            type="password" placeholder="minimum 5 chars long"
+            label="Password"
           />
           <Button style={{marginTop: '1em'}} primary type='submit'>Login</Button>
         </Form>

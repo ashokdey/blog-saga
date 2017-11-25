@@ -2,24 +2,28 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { Grid, Button, Form } from 'semantic-ui-react';
+import CustomInput from './CustomInput';
 
 let RegisterForm = (props) => (
   <div>
     <Grid centered>
       <Form onSubmit={props.handleSubmit}>
-        <Form.Field inline>
-          <label htmlFor="username">Username</label>
-          <Field name="username" component="input" type="text"  placeholder='John Doe' />
-        </Form.Field>
-        <Form.Field inline>
-          <label htmlFor="email" style={{paddingRight: '1.6em'}}>Email</label>
-          <Field name="email" component="input" type="text" placeholder='johndoe@email.com' />
-        </Form.Field>
-        <Form.Field inline>  
-          <label htmlFor="password">Password</label>
-          <Field name="password" component="input" type="password" placeholder='minimum 5 chars long' />
-        </Form.Field>
-        <Button primary type='submit'>Register</Button>
+        <Field 
+          component={CustomInput} name="username" 
+          type="text"  placeholder="a nick name"
+          label="Username"
+        />
+        <Field 
+          component={CustomInput} name="email"
+          type="text" placeholder="johndoe@email.com"
+          label="Email" ls={{marginRight: "3em"}}
+        />
+        <Field 
+          component={CustomInput} name="password" 
+          type="password"   placeholder="minimum 5 chars long"
+          label="Password"
+        />
+        <Button style={{marginTop: '1em'}} primary type='submit'>Register</Button>
       </Form>
     </Grid>  
     <Grid centered>

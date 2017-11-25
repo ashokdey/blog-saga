@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { Grid, Button, Form } from 'semantic-ui-react';
+import CustomInput from './CustomInput';
 
 const LoginForm = (props) => {
   const {handleSubmit } = props;
@@ -9,15 +10,15 @@ const LoginForm = (props) => {
     <div>
       <Grid centered>
         <Form onSubmit={handleSubmit}>
-          <Form.Field inline>
-            <label>Username</label>
-            <Field component="input" name="username" type="text" placeholder='Your username' />
-          </Form.Field>
-          <Form.Field inline>
-            <label>Password</label>
-            <Field component="input" name="password" type="password" placeholder='minimum 5 chars long'/>
-          </Form.Field>
-          <Button primary type='submit'>Login</Button>
+          <Field
+            component={CustomInput} name="username" 
+            type="text" placeholder='Your username' 
+          />
+          <Field
+            component={CustomInput} name="password" 
+            type="password" placeholder='minimum 5 chars long'
+          />
+          <Button style={{marginTop: '1em'}} primary type='submit'>Login</Button>
         </Form>
       </Grid>
       <Grid centered>

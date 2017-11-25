@@ -23,7 +23,10 @@ function* handleLogin(action) {
     localStorage.setItem('user', `${response.data.token}`);
     yield put(loginUserSuccess(response.data.token));
   } catch (error) {
-    yield put(loginUserFailed(error));
+    //get response from server 
+    const { response } = error;
+    const message = response.data.message;
+    yield put(loginUserFailed(message));
   }
 }
 

@@ -10,8 +10,7 @@ class Login extends Component {
   }
 
   handleSubmit(fields) {
-    console.log(fields);    
-    // this.props.loginUser(fields)
+    this.props.loginUser(fields);
   }
 
   render() {

@@ -27,5 +27,6 @@ const LoginForm = (props) => (
 );
 
 export default reduxForm({
-  form: 'LoginForm'
+  form: 'LoginForm',
+  fields: ['username', 'password']
 })(LoginForm);

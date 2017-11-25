@@ -5,21 +5,21 @@ import {
 } from './constants';
 
 
-export function userLogin (fields) {
+export function loginUser (fields) {
   return {
     type: LOGIN_USER_REQUEST,
     payload: fields
   }
 }
 
-export function userLoginSuccess (user) {
+export function loginUserSuccess (user) {
   return {
     type: LOGIN_USER_SUCCESS,
     payload: user
   }
 }
 
-export function userLoginFailed (error) {
+export function loginUserFailed (error) {
   return {
     type: LOGIN_USER_FAILED,
     payload: error

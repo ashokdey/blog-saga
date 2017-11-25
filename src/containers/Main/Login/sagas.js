@@ -5,8 +5,8 @@ import {
 } from './constants';
 
 import {
-  userLoginSuccess,
-  userLoginFailed
+  loginUserSuccess,
+  loginUserFailed
 } from './actions';
 
 import { BASE_URL } from '../../../config';
@@ -21,9 +21,9 @@ function* handleLogin(action) {
     const response = data;
   
     localStorage.setItem('user', `${response.data.token}`);
-    yield put(userLoginSuccess(response.data.token));
+    yield put(loginUserSuccess(response.data.token));
   } catch (error) {
-    yield put(userLoginFailed(error));
+    yield put(loginUserFailed(error));
   }
 }
 

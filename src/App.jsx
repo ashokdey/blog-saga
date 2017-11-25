@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import Header from './components/Header'
-import Login from './containers/Login';
-import Register from './containers/Register';
+import Login from './containers/Main/Login';
+import Register from './containers/Main/Register';
 
 
 class App extends Component {

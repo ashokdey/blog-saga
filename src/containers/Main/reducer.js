@@ -17,11 +17,10 @@ import {
 //   loading: false
 // }
 
-
 export default function(state, action){
   switch(action.type) {
     case REGISTER_USER_REQUEST:
-      return { loading: true, ...state };
+      return { loading: true, token: null, ...state };
 
     case REGISTER_USER_SUCCESS:
       return { token: action.payload, loading: false, ...state };
@@ -30,7 +29,7 @@ export default function(state, action){
       return { token: null, loading: false, error: action.payload, ...state };
     
     case LOGIN_USER_REQUEST:
-      return { loading: true, ...state };
+      return { loading: true, token: null, ...state };
 
     case LOGIN_USER_SUCCESS:
       return { token: action.payload, loading: false, ...state };

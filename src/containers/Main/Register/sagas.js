@@ -14,7 +14,7 @@ import {
   registerUserFailed,
 } from './actions';
 
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
 
 function registerNewUser(data) {
   return axios.post(`${BASE_URL}/api/register`, data)

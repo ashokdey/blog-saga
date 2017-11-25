@@ -17,7 +17,7 @@ import {
 import { BASE_URL } from '../../../config';
 
 function registerNewUser(data) {
-  return axios.post(`${BASE_URL}/api/register`, data)
+  return axios.post(`${BASE_URL}/api/register`, data);  
 }
 
 function* handleRegistration(action) {
@@ -31,8 +31,9 @@ function* handleRegistration(action) {
     // also set the user : token in state by calling registerUserSuccess action
     yield put(registerUserSuccess(response.data.token));
   } catch (error) {
-    console.log(error);
-    yield put(registerUserFailed(error));
+    // console.log(error.response);
+    const { response } = error;
+    yield put(registerUserFailed(response.data.message));
   }   
 }
 

@@ -20,22 +20,23 @@ import {
 export default function(state, action){
   switch(action.type) {
     case REGISTER_USER_REQUEST:
-      return { loading: true, token: null, ...state };
+      return { ...state, loading: true, token: null };
 
     case REGISTER_USER_SUCCESS:
-      return { token: action.payload, loading: false, ...state };
+      return { ...state, token: action.payload, loading: false };
     
     case REGISTER_USER_FAILED:
-      return { token: null, loading: false, error: action.payload, ...state };
+      console.log(action.payload);
+      return { ...state, token: null, loading: false, error: action.payload };
     
     case LOGIN_USER_REQUEST:
-      return { loading: true, token: null, ...state };
+      return { ...state, loading: true, token: null };
 
     case LOGIN_USER_SUCCESS:
-      return { token: action.payload, loading: false, ...state };
+      return { ...state, token: action.payload, loading: false };
     
     case LOGIN_USER_FAILED:
-      return { token: null, loading: false, error: action.payload, ...state }
+      return { ...state, token: null, loading: false, error: action.payload }
 
     default: 
       return {

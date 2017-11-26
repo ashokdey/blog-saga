@@ -23,12 +23,12 @@ class Register extends Component {
 
     if (!usernamePattern.test(username.trim()) || username.trim().length < 5) {
       isError = true;
-      error.username = 'Required and min 5 chars [like : b33ny]';
+      error.username = 'Required and minimum 5 chars [like : b33ny]';
     }
 
     if (password.trim().length < 5) {
       isError = true;
-      error.password = 'Required and min 5 chars';
+      error.password = 'Required and minimum 5 chars';
     }
 
     if (isError) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from './actions';
-import { SubmissionError } from 'redux-form';
+import { SubmissionError, startSubmit } from 'redux-form';
 import LoginForm from '../../../components/LoginForm';
 
 class Login extends Component {
@@ -11,16 +11,17 @@ class Login extends Component {
   }
 
   handleSubmit({ username = '', password = '' }) {
+    this.props.startSubmit('LoginForm');
     const error = {};
     let isError = false;
 
     if (username.trim() === '' || username.trim().length < 5) {
-      error.username = 'Required and min 5 chars';
+      error.username = 'Required and minimum 5 chars';
       isError = true;
     }
 
     if (password.trim() === '' || password.trim().length < 5) {
-      error.password = 'Required and min 5 chars';
+      error.password = 'Required and minimum 5 chars';
       isError = true;
     }
 
@@ -38,4 +39,8 @@ class Login extends Component {
   }
 }
 
-export default connect(null, { loginUser })(Login);
+// function mapStateToProps({ user }){
+//   return { user };
+// }
+
+export default connect(null, { loginUser, startSubmit })(Login);

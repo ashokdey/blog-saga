@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { stopSubmit } from 'redux-form';
 import {
   LOGIN_USER_REQUEST,
 } from './constants';
@@ -22,11 +23,13 @@ function* handleLogin(action) {
   
     localStorage.setItem('user', `${response.data.token}`);
     yield put(loginUserSuccess(response.data.token));
+    yield put(stopSubmit('LoginForm'));
   } catch (error) {
     //get response from server 
     const { response } = error;
     const message = response.data.message;
     yield put(loginUserFailed(message));
+    yield put(stopSubmit('LoginForm'));
   }
 }
 

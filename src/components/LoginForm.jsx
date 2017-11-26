@@ -5,11 +5,12 @@ import { Grid, Button, Form } from 'semantic-ui-react';
 import CustomInput from './CustomInput';
 
 const LoginForm = (props) => {
-  const {handleSubmit } = props;
+  const {handleSubmit, submitting } = props;
+  console.log(submitting)
   return (
     <div>
       <Grid centered>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} loading={submitting}>
           <Field
             component={CustomInput} name="username"
             type="text" placeholder="Your username"

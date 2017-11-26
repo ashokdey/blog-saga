@@ -6,7 +6,7 @@ import CustomInput from './CustomInput';
 
 const LoginForm = (props) => {
   const {handleSubmit, submitting } = props;
-  console.log(submitting)
+
   return (
     <div>
       <Grid centered>

@@ -39,8 +39,5 @@ class Login extends Component {
   }
 }
 
-// function mapStateToProps({ user }){
-//   return { user };
-// }
 
 export default connect(null, { loginUser, startSubmit })(Login);

@@ -5,7 +5,7 @@ import { notLoggedIn } from './actions';
 export default function RequireAuth (ComposedComponent) {
   class Authenticate extends Component {
     componentWillMount() {
-      console.log(this.props);
+      // console.log(this.props);
       const { user } = this.props;
       if (!user.token) {
         this.props.notLoggedIn();

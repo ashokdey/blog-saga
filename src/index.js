@@ -4,16 +4,19 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
+import { routerMiddleware } from 'react-router-redux';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './rootReducer';
 import rootSagas from './rootSagas';
+import { history } from './App'
 
 const sagaMiddleware = createSagaMiddleware();
+const routeMiddleware = routerMiddleware(history);
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(logger, sagaMiddleware)
+  applyMiddleware(logger, sagaMiddleware, routeMiddleware)
 );
 
 const RenderApp = () => (

@@ -11,13 +11,13 @@ import {
 } from './Login/constants';
 
 // initial state (state model)
-// const state = {
-//   token: null,
-//   error: null,
-//   loading: false
-// }
+const initialState = {
+  token: null,
+  error: null,
+  loading: false
+}
 
-export default function(state, action){
+export default function(state = initialState, action){
   switch(action.type) {
     case REGISTER_USER_REQUEST:
       return { ...state, loading: true, token: null };
@@ -39,10 +39,6 @@ export default function(state, action){
       return { ...state, token: null, loading: false, error: action.payload }
 
     default: 
-      return {
-        token: null,
-        error: null,
-        loading: false
-      };
+      return state;
   }
 }

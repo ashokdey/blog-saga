@@ -12,7 +12,7 @@ import {
 
 // initial state (state model)
 const initialState = {
-  token: null,
+  token: localStorage.getItem('user') || null,
   error: null,
   loading: false
 }

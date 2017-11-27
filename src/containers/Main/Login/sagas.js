@@ -28,7 +28,7 @@ function* handleLogin(action) {
     //get response from server 
     const { response } = error;
     const message = response.data.message;
-    yield put(stopSubmit('LoginForm'));    
+    yield put(stopSubmit('LoginForm'));
     yield put(loginUserFailed(message));
   }
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from './actions';
-import { SubmissionError } from 'redux-form';
+import { SubmissionError, startSubmit } from 'redux-form';
 import isEmail from 'validator/lib/isEmail';
 import RegisterForm from '../../../components/RegisterForm';
+import PopupMessage from '../../../components/PopupMessage';
 
 class Register extends Component {
   constructor(props){
@@ -12,6 +13,7 @@ class Register extends Component {
   }
 
   handleSubmit({ email = '', username = '', password = '' }) {
+    this.props.startSubmit('RegisterForm');    
     let isError = false;
     const error = {};
     const usernamePattern = /^[a-zA-Z]([a-zA-Z0-9]+)*$/
@@ -39,10 +41,34 @@ class Register extends Component {
   }
 
   render() {
+    console.log(this.props);
+    const { user } = this.props;
+    let message = null;
+
+    if (user.error) {
+      message = {
+        header: 'Error while creating a new account',
+        content : user.error,
+        type : {
+          negative : true
+        }
+      }
+    }
+
     return (
-      <RegisterForm onSubmit={this.handleSubmit} />
+      <div>
+        { (user.error) ? <PopupMessage message={message}/> : '' }
+        <br/>
+        <br/>
+        <RegisterForm onSubmit={this.handleSubmit} />        
+      </div>
     );
   }
 }
 
-export default connect(null, { registerUser })(Register);
+
+function mapStateToProps(state){
+  return { user : state.user };
+}
+
+export default connect(mapStateToProps, { registerUser, startSubmit })(Register);

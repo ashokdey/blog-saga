@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { stopSubmit } from 'redux-form';
+
 /**
  * call - it is used to call a function with arguments
  * put - to dispatch an action
@@ -33,8 +35,10 @@ function* handleRegistration(action) {
   } catch (error) {
     // console.log(error.response);
     const { response } = error;
-    yield put(registerUserFailed(response.data.message));
-  }   
+    const message = response.data.message;
+    yield put(stopSubmit('RegisterForm'));
+    yield put(registerUserFailed(message));
+  }
 }
 
 // keep watching, whenever REGISTER_USER_REQUEST action is fired, call

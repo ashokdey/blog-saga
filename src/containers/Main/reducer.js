@@ -26,7 +26,6 @@ export default function(state = initialState, action){
       return { ...state, token: action.payload, loading: false };
     
     case REGISTER_USER_FAILED:
-      console.log(action.payload);
       return { ...state, token: null, loading: false, error: action.payload };
     
     case LOGIN_USER_REQUEST:

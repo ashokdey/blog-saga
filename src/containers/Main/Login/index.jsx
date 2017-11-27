@@ -35,7 +35,7 @@ class Login extends Component {
 
   render() {
     console.log(this.props);
-    const { user } = this.props;
+    const { user, auth } = this.props;
     let message = null;
 
     if (user.error) {
@@ -47,10 +47,21 @@ class Login extends Component {
         }
       }
     }
+    if (auth.error) {
+      message = {
+        header: 'Failed to recognize you',
+        content : auth.error,
+        type : {
+          negative : true
+        }
+      }
+    }
     
     return (
       <div>
         { (user.error) ? <PopupMessage message={message}/> : '' }
+        { (auth.error) ? <PopupMessage message={message}/> : '' }
+        
         <br/>
         <br/>
         <LoginForm onSubmit={this.handleSubmit} />
@@ -60,7 +71,10 @@ class Login extends Component {
 }
 
 function mapStateToProps(state){
-  return { user : state.user };
+  return { 
+    user : state.user,
+    auth: state.auth,
+  };
 }
 
 export default connect(mapStateToProps, { loginUser, startSubmit })(Login);

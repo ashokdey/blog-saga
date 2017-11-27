@@ -7,6 +7,7 @@ import Header from './components/Header'
 import Login from './containers/Main/Login';
 import Register from './containers/Main/Register';
 import Home from './components/Home';
+import RequireAuth from './containers/HOC/RequireAuth';
 
 // Create a history of your choosing (we're using a browser history in this case)
 export const history = createHistory();
@@ -19,9 +20,9 @@ class App extends Component {
           <div>
           <Header />
             <Switch>
-              <Route exact path="/" component={Login} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/home" component={Home} />
+              <Route exact path="/" component={RequireAuth(Home)} />
             </Switch>
           </div>
         </ConnectedRouter>

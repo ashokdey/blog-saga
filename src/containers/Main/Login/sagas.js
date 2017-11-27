@@ -26,7 +26,7 @@ function* handleLogin(action) {
     localStorage.setItem('user', `${response.data.token}`);
     yield put(loginUserSuccess(response.data.token));
     // yield put(stopSubmit('LoginForm'));
-    yield put(push('/home'));
+    yield put(push('/'));
   } catch (error) {
     //get response from server 
     const { response } = error;

@@ -7,7 +7,8 @@ export default function RequireAuth (ComposedComponent) {
     componentWillMount() {
       // console.log(this.props);
       const { user } = this.props;
-      if (!user.token) {
+      const token = user.token || localStorage.getItem('user');
+      if (!token) {
         this.props.notLoggedIn();
       }
     }

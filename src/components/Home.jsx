@@ -1,11 +1,26 @@
-import React from 'react';
-import { Container } from 'semantic-ui-react';
+import React from 'react'
+import { Item, Grid } from 'semantic-ui-react'
 
-const Home = () => (
-  <Container>
-    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede link mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-  </Container>
-)
+const Home = (props) => {
+  const { posts } = props;
+  const renderPosts = posts.map( (post) => (
+    <Item key={post.id}>
+    <Item.Content>
+      <Item.Header as='a'>{post.postTitle}</Item.Header>
+      <Item.Meta>{post.description}</Item.Meta>
+      <Item.Extra>Written By: {post.author}</Item.Extra>
+      <Item.Extra>{new Date(post.createdAt).toDateString()}</Item.Extra>
+      <Item.Extra>{post.commentCount} {post.commentCount > 1 ? 'comments' : 'comment'} </Item.Extra>
+    </Item.Content>
+  </Item>
+  ));
+  return (
+    <Grid padded="horizontally">
+      <Item.Group>
+        {renderPosts}
+      </Item.Group>
+    </Grid>
+  );
+}
 
 export default Home;
-

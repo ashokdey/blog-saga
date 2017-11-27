@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { Grid, Button, Form } from 'semantic-ui-react';
+import { Grid, Button, Form, Message, Icon } from 'semantic-ui-react';
 import CustomInput from './CustomInput';
 
 let RegisterForm = (props) => {
@@ -31,7 +31,10 @@ let RegisterForm = (props) => {
       </Grid>  
       <Grid centered>
         <div style={{paddingTop: '2em'}}>
-          Already Registered? <Link to="/"> Login Me </Link>
+          <Message info>
+            <Icon name='info' />
+            Already have an account?&nbsp;<Link style={{fontWeight: 'bolder'}} to="/login">Login </Link>
+          </Message>
         </div>
       </Grid>
     </div>

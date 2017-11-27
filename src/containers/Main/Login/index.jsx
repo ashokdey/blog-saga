@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loginUser } from './actions';
 import { SubmissionError, startSubmit } from 'redux-form';
 import LoginForm from '../../../components/LoginForm';
+import PopupMessage from '../../../components/PopupMessage';
 
 class Login extends Component {
   constructor(props){
@@ -33,11 +34,33 @@ class Login extends Component {
   }
 
   render() {
+    console.log(this.props);
+    const { user } = this.props;
+    let message = null;
+
+    if (user.error) {
+      message = {
+        header: 'Error while login',
+        content : user.error,
+        type : {
+          negative : true
+        }
+      }
+    }
+    
     return (
-      <LoginForm onSubmit={this.handleSubmit} />
+      <div>
+        { (user.error) ? <PopupMessage message={message}/> : '' }
+        <br/>
+        <br/>
+        <LoginForm onSubmit={this.handleSubmit} />
+      </div>
     );
   }
 }
 
+function mapStateToProps(state){
+  return { user : state.user };
+}
 
-export default connect(null, { loginUser, startSubmit })(Login);
+export default connect(mapStateToProps, { loginUser, startSubmit })(Login);

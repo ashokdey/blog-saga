@@ -39,8 +39,6 @@ class Login extends Component {
     let message = null;
     let isError = false;
 
-    console.log(user);    
-
     if (user.error && auth.error) {
       isError = true
       auth.error = null;

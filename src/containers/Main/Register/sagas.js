@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { stopSubmit } from 'redux-form';
+import { push } from 'react-router-redux';
 
 /**
  * call - it is used to call a function with arguments
@@ -32,6 +33,7 @@ function* handleRegistration(action) {
     localStorage.setItem('user', `${response.data.token}`);
     // also set the user : token in state by calling registerUserSuccess action
     yield put(registerUserSuccess(response.data.token));
+    yield put(push('/'));    
   } catch (error) {
     // console.log(error.response);
     const { response } = error;

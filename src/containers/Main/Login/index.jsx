@@ -38,16 +38,18 @@ class Login extends Component {
   render() {
     console.log('**Inside Login: ', this.props);
     
-    const { user, auth } = this.props;
+    const { user, auth, location } = this.props;
     if (user.token || localStorage.getItem('user')) {
       return (<Redirect to="/" />);
     }
     let message = null;
     let isError = false;
 
-    if (user.error && auth.error) {
+    const locationState = location.state;
+
+    if (user.error && locationState.error) {
       isError = true
-      auth.error = null;
+      locationState.error = null;
       message = {
         header: 'Error while login',
         content : user.error,
@@ -65,15 +67,9 @@ class Login extends Component {
           negative : true
         }
       }
-    } else if (auth.error) {
+    } else if (locationState && locationState.error) {
       isError = true;
-      message = {
-        header: 'Failed to recognize you',
-        content : auth.error,
-        type : {
-          negative : true
-        }
-      }
+      message = locationState.error
     }
     
     return (

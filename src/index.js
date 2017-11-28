@@ -12,6 +12,11 @@ import rootSagas from './rootSagas';
 import { history } from './App'
 
 const sagaMiddleware = createSagaMiddleware();
+if (history.location && history.location.state) {
+  // because we are manually setting 2 keys in RequireAuth HOC
+  delete history.location.state.sendTo;
+  delete history.location.state.error;
+}
 const routeMiddleware = routerMiddleware(history);
 
 const store = createStore(

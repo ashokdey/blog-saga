@@ -10,14 +10,22 @@ export default function RequireAuth (ComposedComponent) {
       // console.log('**Inside HOC: ', this.props);
       const { user, location } = this.props;
       const token = user.token || localStorage.getItem('user');
+      
       if (!token) {
-        this.props.notLoggedIn();
+        // this.props.notLoggedIn();
         return (
           <Redirect 
             to={{
               pathname: '/login',
               state: {
-                sendTo: location.pathname
+                sendTo: location.pathname,
+                error: {
+                  header: 'Failed to recognize you',
+                  content : 'Please Login to continue',
+                  type : {
+                    negative : true
+                  }
+                }
               }
             }}
           />

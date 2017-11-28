@@ -5,10 +5,10 @@ import {
 } from './constants';
 
 
-export function loginUser (fields) {
+export function loginUser (fields, redirectToURL) {
   return {
     type: LOGIN_USER_REQUEST,
-    payload: fields
+    payload: { fields, redirectToURL }
   }
 }
 

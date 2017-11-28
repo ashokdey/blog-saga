@@ -19,13 +19,13 @@ function loginUser (data) {
 
 function* handleLogin(action) {
   try {
-    const { data } = yield(call(loginUser, action.payload));
+    const { data } = yield(call(loginUser, action.payload.fields));
     const response = data;
   
     localStorage.setItem('user', `${response.data.token}`);
     yield put(loginUserSuccess(response.data.token));
     // yield put(stopSubmit('LoginForm'));
-    yield put(push('/'));
+    yield put(push(action.payload.redirectToURL));
   } catch (error) {
     //get response from server 
     const { response } = error;

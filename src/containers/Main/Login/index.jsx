@@ -13,6 +13,7 @@ class Login extends Component {
   }
 
   handleSubmit({ username = '', password = '' }) {
+    const redirectToURL = this.props.location.state.sendTo || '/';
     this.props.startSubmit('LoginForm');
     const error = {};
     let isError = false;
@@ -30,7 +31,7 @@ class Login extends Component {
     if (isError) {
       throw new SubmissionError(error);
     } else {
-      this.props.loginUser({ username, password });
+      this.props.loginUser({ username, password }, redirectToURL);
     }
   }
 

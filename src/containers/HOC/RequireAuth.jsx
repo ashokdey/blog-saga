@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { notLoggedIn } from './actions';
+import { notLoggedIn, alreadyLoggedIn } from './actions';
 
 export default function RequireAuth (ComposedComponent) {
   class Authenticate extends Component {
@@ -10,6 +10,9 @@ export default function RequireAuth (ComposedComponent) {
       const token = user.token || localStorage.getItem('user');
       if (!token) {
         this.props.notLoggedIn();
+      }
+      else {
+        this.props.alreadyLoggedIn();
       }
     }
 
@@ -27,5 +30,5 @@ export default function RequireAuth (ComposedComponent) {
     };
   }
 
-  return connect(mapStateToProps, { notLoggedIn })(Authenticate);
+  return connect(mapStateToProps, { notLoggedIn, alreadyLoggedIn })(Authenticate);
 }

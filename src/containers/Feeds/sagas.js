@@ -28,7 +28,6 @@ function* handleGetAllPosts(action) {
     yield put(getAllPostsSuccess(response.data));
   } catch(error) {
     const { response } = error;
-    console.log('**Get all post saga**', response);
     if (response.status === 401) {
       // redirect to login
       yield put(notLoggedIn());

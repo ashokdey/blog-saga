@@ -2,8 +2,19 @@ import React from 'react'
 import { Grid, Message } from 'semantic-ui-react'
 
 const PopupMessage = (props) => {
-  const { message } = props;
-  const messageType = message.type;
+  let message  = props.message || null;
+  let messageType = null;
+  if (message) {
+    messageType = message.type;
+  }
+  if (message === null) {
+    message = {};
+    message.header ='Something went wrong';
+    message.content = 'Please refresh/try later';
+    messageType = {
+      negative : true
+    };
+  }
   return (
     <div>
       <Grid centered>

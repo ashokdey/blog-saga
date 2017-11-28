@@ -37,8 +37,13 @@ class Login extends Component {
     // console.log(this.props);
     const { user, auth } = this.props;
     let message = null;
+    let isError = false;
 
-    if (user.error) {
+    console.log(user);    
+
+    if (user.error && auth.error) {
+      isError = true
+      auth.error = null;
       message = {
         header: 'Error while login',
         content : user.error,
@@ -46,8 +51,18 @@ class Login extends Component {
           negative : true
         }
       }
-    }
-    if (auth.error) {
+    } else if (user.error) {
+      isError = true
+      auth.error = null;
+      message = {
+        header: 'Error while login',
+        content : user.error,
+        type : {
+          negative : true
+        }
+      }
+    } else if (auth.error) {
+      isError = true;
       message = {
         header: 'Failed to recognize you',
         content : auth.error,
@@ -59,9 +74,7 @@ class Login extends Component {
     
     return (
       <div>
-        { (user.error) ? <PopupMessage message={message}/> : '' }
-        { (auth.error) ? <PopupMessage message={message}/> : '' }
-        
+        { isError ? <PopupMessage message={message}/> : '' }
         <br/>
         <br/>
         <LoginForm onSubmit={this.handleSubmit} />

@@ -16,6 +16,7 @@ class Feeds extends Component {
 
   loadPosts() {
     const { user } = this.props;
+    console.log('**User token', user.token);
     const token = user.token || localStorage.getItem('user');
     
     if (token) {

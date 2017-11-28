@@ -10,6 +10,12 @@ import {
   LOGIN_USER_FAILED
 } from './Login/constants';
 
+import {
+  NOT_AUTHENTICATED, 
+  ALREADY_AUTHENTICATED
+} from './constants';
+
+
 // initial state (state model)
 const initialState = {
   token: localStorage.getItem('user') || null,
@@ -35,7 +41,12 @@ export default function(state = initialState, action){
       return { ...state, token: action.payload, loading: false };
     
     case LOGIN_USER_FAILED:
-      return { ...state, token: null, loading: false, error: action.payload }
+      return { ...state, token: null, loading: false, error: action.payload };
+
+    case NOT_AUTHENTICATED:
+      return { ...state, token: null, error: action.payload };
+    case ALREADY_AUTHENTICATED:
+      return { ...state, error: action.payload };
 
     default: 
       return state;

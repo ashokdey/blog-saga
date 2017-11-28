@@ -14,8 +14,10 @@ import { history } from './App'
 const sagaMiddleware = createSagaMiddleware();
 if (history.location && history.location.state) {
   // because we are manually setting 2 keys in RequireAuth HOC
-  delete history.location.state.sendTo;
-  delete history.location.state.error;
+  const tempHistory = { ...history.location.state }
+  delete tempHistory.sendTo;
+  delete tempHistory.error;
+  history.replace({ ...history.location, tempHistory });
 }
 const routeMiddleware = routerMiddleware(history);
 

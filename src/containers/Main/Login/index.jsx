@@ -13,7 +13,13 @@ class Login extends Component {
   }
 
   handleSubmit({ username = '', password = '' }) {
-    const redirectToURL = this.props.location.state.sendTo || '/';
+    // console.log('****Login.jsx', this.props);
+
+    let redirectToURL = '/';
+    if (this.props.location.state) {
+      redirectToURL = this.props.location.state.sendTo;
+    }
+
     this.props.startSubmit('LoginForm');
     const error = {};
     let isError = false;
@@ -45,21 +51,22 @@ class Login extends Component {
     let message = null;
     let isError = false;
 
-    const locationState = location.state;
+    const locationState = location.state || null;
 
-    if (user.error && locationState.error) {
-      isError = true
-      locationState.error = null;
-      message = {
-        header: 'Error while login',
-        content : user.error,
-        type : {
-          negative : true
+    if (user.error && locationState) {
+      if (locationState.error)  {
+        isError = true
+        locationState.error = null;
+        message = {
+          header: 'Error while login',
+          content : user.error,
+          type : {
+            negative : true
+          }
         }
       }
     } else if (user.error) {
       isError = true
-      auth.error = null;
       message = {
         header: 'Error while login',
         content : user.error,
@@ -69,7 +76,8 @@ class Login extends Component {
       }
     } else if (locationState && locationState.error) {
       isError = true;
-      message = locationState.error
+      message = locationState.error;
+
     }
     
     return (
@@ -86,7 +94,6 @@ class Login extends Component {
 function mapStateToProps(state){
   return { 
     user : state.user,
-    auth: state.auth,
   };
 }
 

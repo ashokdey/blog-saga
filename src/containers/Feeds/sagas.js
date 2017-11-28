@@ -11,7 +11,7 @@ import {
   getAllPostsFailed
 } from './actions';
 
-import { notLoggedIn } from '../HOC/actions';
+import { notLoggedIn } from '../Main/actions';
 
 function getAllPosts (data) {
   const  options = {
@@ -28,9 +28,12 @@ function* handleGetAllPosts(action) {
     yield put(getAllPostsSuccess(response.data));
   } catch(error) {
     const { response } = error;
+    console.log('**Get all post saga**', response);
     if (response.status === 401) {
       // redirect to login
-      yield put(notLoggedIn())
+      yield put(notLoggedIn());
+      // also set the token in local storage to null
+      yield localStorage.removeItem('user');
       yield put(push('/login'));
     }
     const message = response.data.message;

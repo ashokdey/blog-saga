@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { registerUser } from './actions';
+import { Redirect } from 'react-router-dom';
 import { SubmissionError, startSubmit } from 'redux-form';
+import { registerUser } from './actions';
 import isEmail from 'validator/lib/isEmail';
 import RegisterForm from '../../../components/RegisterForm';
 import PopupMessage from '../../../components/PopupMessage';
@@ -43,6 +44,11 @@ class Register extends Component {
   render() {
     console.log(this.props);
     const { user } = this.props;
+
+    if (user.token || localStorage.getItem('user')) {
+      return (<Redirect to="/" />);
+    }
+
     let message = null;
 
     if (user.error) {

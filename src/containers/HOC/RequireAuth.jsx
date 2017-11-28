@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { notLoggedIn, alreadyLoggedIn } from './actions';
 
 export default function RequireAuth (ComposedComponent) {
   class Authenticate extends Component {
-    componentWillMount() {
-      // console.log(this.props);
+
+    render() {
       const { user } = this.props;
       const token = user.token || localStorage.getItem('user');
       if (!token) {
         this.props.notLoggedIn();
+        return (<Redirect to="/login"/>);
       }
       else {
-        this.props.alreadyLoggedIn();
+        // this.props.alreadyLoggedIn();
+        return (
+          <ComposedComponent {...this.props} /> 
+        );
       }
-    }
-
-    render() {
-      return (
-        <ComposedComponent {...this.props} /> 
-      );
     }
   }
 

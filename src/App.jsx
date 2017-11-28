@@ -20,8 +20,8 @@ class App extends Component {
           <div>
           <Header />
             <Switch>
-              <Route exact path="/login" component={RequireAuth(Login)} />
-              <Route exact path="/register" component={RequireAuth(Register)} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
               <Route exact path="/" component={RequireAuth(Feeds)} />
             </Switch>
           </div>

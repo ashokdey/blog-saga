@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from './actions';
 import { SubmissionError, startSubmit } from 'redux-form';
+import { Redirect } from 'react-router-dom';
 import LoginForm from '../../../components/LoginForm';
 import PopupMessage from '../../../components/PopupMessage';
 
@@ -36,6 +37,9 @@ class Login extends Component {
   render() {
     // console.log(this.props);
     const { user, auth } = this.props;
+    if (user.token || localStorage.getItem('user')) {
+      return (<Redirect to="/" />);
+    }
     let message = null;
     let isError = false;
 

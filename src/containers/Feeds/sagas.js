@@ -25,7 +25,6 @@ function* handleGetAllPosts(action) {
   try {
     const { data } = yield call(getAllPosts, action.payload);
     const response = data;
-    console.log(response);
     yield put(getAllPostsSuccess(response.data));
   } catch(error) {
     const { response } = error;

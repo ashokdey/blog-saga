@@ -7,11 +7,21 @@ export default function RequireAuth (ComposedComponent) {
   class Authenticate extends Component {
 
     render() {
-      const { user } = this.props;
+      // console.log('**Inside HOC: ', this.props);
+      const { user, location } = this.props;
       const token = user.token || localStorage.getItem('user');
       if (!token) {
         this.props.notLoggedIn();
-        return (<Redirect to="/login"/>);
+        return (
+          <Redirect 
+            to={{
+              pathname: '/login',
+              state: {
+                sendTo: location.pathname
+              }
+            }}
+          />
+        );
       }
       else {
         // this.props.alreadyLoggedIn();

@@ -35,7 +35,8 @@ class Login extends Component {
   }
 
   render() {
-    // console.log(this.props);
+    console.log('**Inside Login: ', this.props);
+    
     const { user, auth } = this.props;
     if (user.token || localStorage.getItem('user')) {
       return (<Redirect to="/" />);

@@ -7,6 +7,7 @@ import Header from './components/Header'
 import Login from './containers/Main/Login';
 import Register from './containers/Main/Register';
 import Feeds from './containers/Feeds';
+import Cards from './components/Cards';
 import RequireAuth from './containers/HOC/RequireAuth';
 
 // Create a history of your choosing (we're using a browser history in this case)
@@ -23,6 +24,8 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/" component={RequireAuth(Feeds)} />
+              <Route exact path="/cards" component={RequireAuth(Cards)} />
+
             </Switch>
           </div>
         </ConnectedRouter>

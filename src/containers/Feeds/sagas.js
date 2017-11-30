@@ -30,10 +30,10 @@ function* handleGetAllPosts(action) {
     const { response } = error;
     if (response.status === 401) {
       // redirect to login
-      yield put(notLoggedIn());
+      yield put(notLoggedIn({status: 401 }));
       // also set the token in local storage to null
       yield localStorage.removeItem('user');
-      yield put(push('/login'));
+      return yield put(push('/login'));
     }
     const message = response.data.message;
     yield put(getAllPostsFailed(message));

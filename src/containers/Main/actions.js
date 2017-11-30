@@ -1,9 +1,12 @@
 import { NOT_AUTHENTICATED, ALREADY_AUTHENTICATED } from './constants';
 
-export function notLoggedIn() {
+export function notLoggedIn(err) {
   return {
     type: NOT_AUTHENTICATED,
-    payload: 'Please login to continue',
+    payload: {
+      err,
+      message: 'Please login to continue'
+    },
   };
 }
 

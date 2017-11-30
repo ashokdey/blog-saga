@@ -23,6 +23,7 @@ function* handleLogin(action) {
     const response = data;
   
     localStorage.setItem('user', `${response.data.token}`);
+    localStorage.setItem('userRefresh', `${response.data.refreshToken}`);
     yield put(loginUserSuccess(response.data.token));
     // yield put(stopSubmit('LoginForm'));
     yield put(push(action.payload.redirectToURL));

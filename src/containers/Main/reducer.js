@@ -44,7 +44,7 @@ export default function(state = initialState, action){
       return { ...state, token: null, loading: false, error: action.payload };
 
     case NOT_AUTHENTICATED:
-      return { ...state, token: null, error: action.payload };
+      return { ...state, token: null, error: action.payload.message };
     case ALREADY_AUTHENTICATED:
       return { ...state, error: action.payload };
 

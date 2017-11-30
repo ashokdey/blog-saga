@@ -9,7 +9,8 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './rootReducer';
 import rootSagas from './rootSagas';
-import { history } from './App'
+import { history } from './App';
+import customMiddleware from './middleware/getRefreshToken';
 
 const sagaMiddleware = createSagaMiddleware();
 if (history.location && history.location.state) {
@@ -21,7 +22,7 @@ const routeMiddleware = routerMiddleware(history);
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(logger, sagaMiddleware, routeMiddleware)
+  applyMiddleware(customMiddleware, logger, sagaMiddleware, routeMiddleware)
 );
 
 const RenderApp = () => (

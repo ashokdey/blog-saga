@@ -31,6 +31,7 @@ function* handleRegistration(action) {
 
     // set the user's token in local storage to be used with every request
     localStorage.setItem('user', `${response.data.token}`);
+    localStorage.setItem('userRefresh', `${response.data.refreshToken}`);    
     // also set the user : token in state by calling registerUserSuccess action
     yield put(registerUserSuccess(response.data.token));
     yield put(push('/'));    

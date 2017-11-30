@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://blog-post-api.herokuapp.com';
+export const BASE_URL = 'http://localhost:3030';

@@ -32,21 +32,5 @@ const RenderApp = () => (
 
 sagaMiddleware.run(rootSagas);
 
-/*
-
-const configureStore = () => {
-  const sagaMiddleware = createSagaMiddleware(); 
-  return {
-    ...createStore(rootReducer,
-      applyMiddleware(logger, sagaMiddleware)),
-    runSaga: sagaMiddleware.run(rootSagas)
-  };
-};
-
-const store = configureStore();
-
-
-*/
-
 ReactDOM.render(<RenderApp />, document.getElementById('root'));
 registerServiceWorker();
